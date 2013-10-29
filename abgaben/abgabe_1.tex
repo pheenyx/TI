@@ -1,0 +1,72 @@
+\section{Aufgabe 1}
+
+\begin{tabular}{|l|l|l|l|}\hline
+Dualsystem & Oktalsystem & Dezimalsystem & Hexadezimalsystem \\\hline\hline
+\textbf{101110101101} & 5655 & 2989 & 0B AD \\\hline
+11001000101 & \textbf{3105} & 1605 & 06 45 \\\hline
+1110001111 & 1617 & \textbf{911}$\ast$ & 03 8F \\\hline
+111110101100 & 7654 & 4012 & \textbf{0F AC} \\\hline
+\end{tabular}
+\[\ast 911 = 512 + 256 + 128 + 8 + 4 + 2 + 1\] 
+ 
+
+\section{Aufgabe 2}
+Beweisen oder widerlegen Sie: $(a.b) + (\neg a.c) = (a.b) + (\neg a.c) + (b.c)$
+
+?
+
+
+\section{Aufgabe 3}
+\subsection{a)}
+\begin{tabular}{|l||l|l|l||l|}\hline
+i & $x_1$ & $x_2$ & $x_3$ & $f(x_1,x_2,x_3)$ \\\hline\hline
+0 & 0 & 0 & 0 & 0 \\\hline
+1 & 0 & 0 & 1 & 0 \\\hline
+2 & 0 & 1 & 0 & 0 \\\hline
+3 & 0 & 1 & 1 & 0 \\\hline
+4 & 1 & 0 & 0 & 0 \\\hline
+5 & 1 & 0 & 1 & 1 \\\hline
+6 & 1 & 1 & 0 & 1 \\\hline
+7 & 1 & 1 & 1 & 1 \\\hline
+\end{tabular}
+
+\paragraph{DNF}
+DNF = Minterme der einschlägigen Indizes (Sum of Products)\\
+$m_5 + m_6 + m_7 = x_1.\neg x_2.\neg x_3 + x_1.x_2.\neg x_3 + x_1.x_2.x_3$
+
+\paragraph{KNF}
+KNF = Maxterme (=$\neg$ Minterme) der nullschlägigen Indizes (Product of Sums)\\
+$M_0 . M_1 . M_2 . M_3 . M_4 = (x_1+x_2+x_3) . (x_1+x_2+\neg x_3) . (x_1+\neg x_2+x_3) . (x_1+\neg x_2+\neg x_3) . (\neg x_1+x_2+x_3)$
+
+\subsection{b)}
+\begin{tabular}{|l||l|l|l||l|}\hline
+i & $x_1$ & $x_2$ & $x_3$ & $f(x_1,x_2,x_3)$ \\\hline\hline
+0 & 0 & 0 & 0 & 0 \\\hline
+1 & 0 & 0 & 1 & 1 \\\hline
+2 & 0 & 1 & 0 & 0 \\\hline
+3 & 0 & 1 & 1 & 1 \\\hline
+4 & 1 & 0 & 0 & 1 \\\hline
+5 & 1 & 0 & 1 & 0 \\\hline
+6 & 1 & 1 & 0 & 1 \\\hline
+7 & 1 & 1 & 1 & 0 \\\hline
+\end{tabular}
+
+\paragraph{DNF}
+DNF = Minterme der einschlägigen Indizes (Sum of Products)\\
+$m_1 + m_3 + m_4 + m_6 = \neg x_1.\neg x_2.x_3 + \neg x_1.x_2.x_3 + x_1.\neg x_2.\neg x_3 + x_1.x_2.\neg x_3$
+
+\paragraph{KNF}
+KNF = Maxterme (=$\neg$ Minterme) der nullschlägigen Indizes (Product of Sums)\\
+$M_0 . M_2 . M_5 . M_7  = (x_1+x_2+x_3) . (x_1+\neg x_2+x_3) . (\neg x_1+x_2+\neg x_3) . (\neg x_1+\neg x_2+\neg x_3)$
+
+
+\section{Aufgabe 4}
+Definition: a = Fr Hoffman kommt, b = Hr Hoffman kommt, c = Fr. Beck kommt, d = Hr Reuschenbach kommt\\
+Bekannt: $x \Rightarrow y \Longleftrightarrow \neg x + y$\\
+Aussagen: 
+\begin{enumerate}
+ \item $a \Rightarrow b \Longleftrightarrow \neg a + b$ 
+ \item $\neg c \Rightarrow d \Longleftrightarrow c + d$
+ \item $d \Rightarrow b \Longleftrightarrow \neg d + b$
+ \item $(a.c) \Rightarrow \neg d \Longleftrightarrow (\neg a+\neg c) + \neg d \Longleftrightarrow \neg (a.c.d)$
+\end{enumerate}
