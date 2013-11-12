@@ -118,7 +118,7 @@ following circuit:
 \vspace{1em}
 \begin{figure}[h]
   \centering\includegraphics[width=\linewidth]{images/exercise_3_1_c.png}
-  \caption{Solution to 1 (c)}
+  \caption{Solution to 3.1 (c)}
 \end{figure}
 \vspace{1em}
 
@@ -135,30 +135,18 @@ E-mail sent to tutors, awaiting clarification of the question.
  \item OR: $x_0 = 0$ and $x_1=x_2=x_3= 1$ yields output $z = a \lor b$
  \item NOT: since NOT is an unary operand $b=0$ and $x_0=1, x_1=0, (x_2=x_3=0)$ yields output $z = \lnot a$
 \end{enumerate}
+What's all this racket? Clamp 1,1,1,0 to the inputs, yield a NAND $\Rightarrow$ epic victory?...
 
-
-\section{Exercise 4}
-
-\begin{tabular}{|l||l|l|l|l|}\hline
-$x_i$ & $y_3$ & $y_2$ & $y_1$ & $y_0$ \\\hline\hline
-0 & 0 & 0 & 0 & 0  \\\hline
-1 & 0 & 0 & 0 & 1  \\\hline
-2 & 0 & 0 & 1 & 0  \\\hline
-3 & 0 & 0 & 1 & 1  \\\hline
-4 & 0 & 1 & 0 & 0  \\\hline
-5 & 0 & 1 & 0 & 1  \\\hline
-6 & 0 & 1 & 1 & 0  \\\hline
-7 & 0 & 1 & 1 & 1  \\\hline
-8 & 1 & 0 & 0 & 0  \\\hline
-9 & 1 & 0 & 0 & 1  \\\hline
-10 & 1 & 0 & 1 & 0 \\\hline
-11 & 1 & 0 & 1 & 1 \\\hline
-12 & 1 & 1 & 0 & 0 \\\hline
-13 & 1 & 1 & 0 & 1 \\\hline
-14 & 1 & 1 & 1 & 0 \\\hline
-15 & 1 & 1 & 1 & 1 \\\hline
-\end{tabular}
-Not solved yet...
-
+\section*{Exercise 4 (4-DeMUX from smaller parts)}
+If we want to construct a 4-DeMUX, but have only 4 2-DeMUX'es and infinite number of
+simpler gatters at our disposal, we can construct an additional 2-DeMUX from scratch
+from simpler AND gatters and inverters, and then clamp the four 2-DeMUX'es to it's 
+outputs:
+\vspace{1em}
+\begin{figure}[h]
+  \centering\includegraphics[width=\linewidth]{images/exercise_3_4.png}
+  \caption{Solution to 3.4}
+\end{figure}
+\vspace{1em}
 
 \end{document}
