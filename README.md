@@ -1,2 +1,8 @@
 TI
 ==
+2013-11-14 18:00 
+  Synchronization notice: I'm working on 4.1, 4.2 looks good too.
+  4.3 has too much badly written background story, I don't get it...
+
+2013-11-14 18:49
+  Working on 4.2

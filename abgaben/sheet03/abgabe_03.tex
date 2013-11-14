@@ -118,14 +118,44 @@ following circuit:
 \vspace{1em}
 \begin{figure}[h]
   \centering\includegraphics[width=\linewidth]{images/exercise_3_1_c.png}
-  \caption{Solution to 1 (c)}
+  \caption{Solution to 3.1 (c)}
 \end{figure}
 \vspace{1em}
 
 \FloatBarrier
 % Exercise 2.2
 \section*{Exercise 2 (Air conditioner)}
-E-mail sent to tutors, awaiting clarification of the question.
+We have an air contitioner, that reacts to three binary sensors (temperature $t$, wind $w$, humidity $h$).
+The rule of the automatic part $a$ of the system consist of three parts:
+\begin{itemize}
+  \item if $t \wedge \neg (w \wedge \neg h)$ then switch conditioner on
+  \item if $h \wedge \neg (\neg t \wedge w)$ then switch conditioner on
+  \item if $w \wedge \neg (t \wedge h)$ then switch conditioner off
+\end{itemize}
+All together, it yields:
+\begin{align*}
+a &= 
+  ((t \wedge \neg (w \wedge \neg h)) \vee (h \wedge \neg (\neg t \wedge w))) 
+  \wedge 
+  \not (w \wedge \neg (t \wedge h)) \\
+  &\overset{De Morgan}=
+  ((t \wedge (\neg w \vee h)) \vee (h \wedge (t \vee \neg w))) \wedge (\neg w \vee (t \wedge h)) \\
+  &\overset{distr, idempot}=
+  (t\bar w + th + ht + h \bar w)(\bar w + th) \\
+  &\overset{distr, assoc}=
+  t\bar w + th\bar w + h\bar w + th\bar w + th + th \bar w \\
+  &\overset{absorp}=
+  t\bar w + th + h\bar w
+\end{align*}
+This can be implemented as a circuit consisting of a single 2-MUX.
+Additionally, the user $u$ shall be able to override the sensors and switch the conditioner ON manually.
+Alltogether, this yields following circuit:
+\vspace{1em}
+\begin{figure}[h]
+  \centering\includegraphics[width=\linewidth]{images/conditioner.png}
+  \caption{Solution to 3.2}
+\end{figure}
+\vspace{1em}
 
 \section*{Exercise 3: MUX is universal}
 
@@ -136,29 +166,16 @@ E-mail sent to tutors, awaiting clarification of the question.
  \item NOT: since NOT is an unary operand $b=0$ and $x_0=1, x_1=0, (x_2=x_3=0)$ yields output $z = \lnot a$
 \end{enumerate}
 
-
-\section{Exercise 4}
-
-\begin{tabular}{|l||l|l|l|l|}\hline
-$x_i$ & $y_3$ & $y_2$ & $y_1$ & $y_0$ \\\hline\hline
-0 & 0 & 0 & 0 & 0  \\\hline
-1 & 0 & 0 & 0 & 1  \\\hline
-2 & 0 & 0 & 1 & 0  \\\hline
-3 & 0 & 0 & 1 & 1  \\\hline
-4 & 0 & 1 & 0 & 0  \\\hline
-5 & 0 & 1 & 0 & 1  \\\hline
-6 & 0 & 1 & 1 & 0  \\\hline
-7 & 0 & 1 & 1 & 1  \\\hline
-8 & 1 & 0 & 0 & 0  \\\hline
-9 & 1 & 0 & 0 & 1  \\\hline
-10 & 1 & 0 & 1 & 0 \\\hline
-11 & 1 & 0 & 1 & 1 \\\hline
-12 & 1 & 1 & 0 & 0 \\\hline
-13 & 1 & 1 & 0 & 1 \\\hline
-14 & 1 & 1 & 1 & 0 \\\hline
-15 & 1 & 1 & 1 & 1 \\\hline
-\end{tabular}
-Not solved yet...
-
+\section*{Exercise 4 (4-DeMUX from smaller parts)}
+If we want to construct a 4-DeMUX, but have only 4 2-DeMUX'es and infinite number of
+simpler gatters at our disposal, we can construct an additional 2-DeMUX from scratch
+from simpler AND gatters and inverters, and then clamp the four 2-DeMUX'es to it's 
+outputs:
+\vspace{1em}
+\begin{figure}[h]
+  \centering\includegraphics[width=\linewidth]{images/exercise_3_4.png}
+  \caption{Solution to 3.4}
+\end{figure}
+\vspace{1em}
 
 \end{document}
