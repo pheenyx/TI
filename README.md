@@ -5,4 +5,4 @@ TI
   4.3 has too much badly written background story, I don't get it...
 
 2013-11-14 18:49
-  Working on 4.2
+  Working on 4.2 Done 4.2 a,b,c. d is also basically solved, but only on paper
