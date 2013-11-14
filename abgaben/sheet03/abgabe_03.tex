@@ -125,7 +125,37 @@ following circuit:
 \FloatBarrier
 % Exercise 2.2
 \section*{Exercise 2 (Air conditioner)}
-E-mail sent to tutors, awaiting clarification of the question.
+We have an air contitioner, that reacts to three binary sensors (temperature $t$, wind $w$, humidity $h$).
+The rule of the automatic part $a$ of the system consist of three parts:
+\begin{itemize}
+  \item if $t \wedge \neg (w \wedge \neg h)$ then switch conditioner on
+  \item if $h \wedge \neg (\neg t \wedge w)$ then switch conditioner on
+  \item if $w \wedge \neg (t \wedge h)$ then switch conditioner off
+\end{itemize}
+All together, it yields:
+\begin{align*}
+a &= 
+  ((t \wedge \neg (w \wedge \neg h)) \vee (h \wedge \neg (\neg t \wedge w))) 
+  \wedge 
+  \not (w \wedge \neg (t \wedge h)) \\
+  &\overset{De Morgan}=
+  ((t \wedge (\neg w \vee h)) \vee (h \wedge (t \vee \neg w))) \wedge (\neg w \vee (t \wedge h)) \\
+  &\overset{distr, idempot}=
+  (t\bar w + th + ht + h \bar w)(\bar w + th) \\
+  &\overset{distr, assoc}=
+  t\bar w + th\bar w + h\bar w + th\bar w + th + th \bar w \\
+  &\overset{absorp}=
+  t\bar w + th + h\bar w
+\end{align*}
+This can be implemented as a circuit consisting of a single 2-MUX.
+Additionally, the user $u$ shall be able to override the sensors and switch the conditioner ON manually.
+Alltogether, this yields following circuit:
+\vspace{1em}
+\begin{figure}[h]
+  \centering\includegraphics[width=\linewidth]{images/conditioner.png}
+  \caption{Solution to 3.2}
+\end{figure}
+\vspace{1em}
 
 \section*{Exercise 3: MUX is universal}
 
