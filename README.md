@@ -8,3 +8,7 @@ TI
   Working on 4.2 Done 4.2 a,b,c. d is also basically solved, but only on paper, 
   just have to type it, but it's not a problem, no need to do it twice. Please
   take a look at 4.3 already.
+
+2013-11-20 16:50
+  I just continue typing 4.2 
+  Any progress on 4.3?
