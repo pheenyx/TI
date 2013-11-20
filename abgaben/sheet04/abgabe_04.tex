@@ -137,21 +137,101 @@ u_{out} = \bar m u + \bar m s + su.
 
 \vspace{1em}
 \begin{figure}[h]
-  \centering\includegraphics[width=\linewidth]{images/halfSubtractor.png}
+  \centering\includegraphics[width=0.75\linewidth]{images/halfSubtractor.png}
   \caption{Half subtractor.}
 \end{figure}
 \vspace{1em}
 
 \vspace{1em}
 \begin{figure}[h]
-  \centering\includegraphics[width=\linewidth]{images/fullSubtractor.png}
+  \centering\includegraphics[width=0.75\linewidth]{images/fullSubtractor.png}
   \caption{Full subtractor. We recycled as many gatters as we could for both sub-circuits. Reason: that's the maximal complexity allowed for free LucidChart accounts...}
 \end{figure}
 \vspace{1em}
 
 \FloatBarrier
-\section*{Exercise 4.3 (TODO)}
-\subExercise{a}
+\section*{Exercise 4.3 (Betting and Racing)}
+
+\begin{tabular}{|l||l|l|l|l||l||l|l|}\hline
+i & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $f_1$ & $f_{2a}$ & $f_{2b}$ \\\hline\hline
+0 & 0 & 0 & 0 & 0 &                 &   &    \\\hline
+1 & 0 & 0 & 0 & 1 &                 &   &    \\\hline
+2 & 0 & 0 & 1 & 0 &    1 ($B_2$)    &   &    \\\hline
+3 & 0 & 0 & 1 & 1 &    1 ($B_3$)    & 1 & 1  \\\hline
+4 & 0 & 1 & 0 & 0 &                 &   &    \\\hline
+5 & 0 & 1 & 0 & 1 &    1 ($B_3$)    & 1 & 1  \\\hline
+6 & 0 & 1 & 1 & 0 &                 &   &    \\\hline
+7 & 0 & 1 & 1 & 1 &                 & 1 & 1  \\\hline
+8 & 1 & 0 & 0 & 0 &    1 ($B_1$)    &   &    \\\hline
+9 & 1 & 0 & 0 & 1 &    0 ($B_1+B_3$)&   &    \\\hline
+10 & 1 & 0 & 1 & 0 &   1 ($B_1$)    &   & D  \\\hline
+11 & 1 & 0 & 1 & 1 &   1 ($B_1$)    &   & D  \\\hline
+12 & 1 & 1 & 0 & 0 &                &   & D  \\\hline
+13 & 1 & 1 & 0 & 1 &                &   & D  \\\hline
+14 & 1 & 1 & 1 & 0 &                &   & D  \\\hline
+15 & 1 & 1 & 1 & 1 &                & 1 & D  \\\hline
+\end{tabular}
+
+\subExercise{a1}
+$f_1 = 1 \Leftrightarrow B_1 . \neg B_2 . \neg B_3 + \neg B_1 . B_2 . \neg B_3 + \neg B_1 . \neg B_2 . B_3$ \\ where
+\begin{itemize}
+ \item $B_1 = 1 \Leftrightarrow x_1 . \neg x_2 = 1$ 
+ \item $B_2 = 1 \Leftrightarrow \neg x_1 . \neg x_2 . x_3 . \neg x_4  = 1$
+ \item $B_3 = 1 \Leftrightarrow x_4 . \text{only one of}(x_1,x_2,x_3) = 1$
+\end{itemize}
+brings us to column $f_1$ in the table above and leeds to the Karnaugh table:
+
+\begin{tabular}{|c||c|c|c|c|}
+  \hline 
+            & \multicolumn{4}{c|}{$x_3x_4$} \\
+$x_1x_2$ & 00                  & 01                  & 11                 & 10                \\ \hline
+    00   &                     & \cellcolor{yellow}1 & \cellcolor{green}1 &                   \\ \hline
+    01   &                     & \cellcolor{red}1    &                    &                   \\ \hline
+    11   &                     &                     &                    &                   \\ \hline
+    10   & \cellcolor{orange}1 &                     & \cellcolor{blue}1  & \cellcolor{blue}1 \\
+  \hline
+\end{tabular}
+which yields: $f_1 =  \textcolor{blue}{x_1\neg x_2x_3}+
+                      \textcolor{red}{\neg x_1\neg x_3x_4}+
+                      \textcolor{green}{\neg x_1\neg x_2x_4}+
+                      \textcolor{orange}{x_1\neg x_2\neg x_3\neg x_4}$
+
+                      
+                      
+\subExercise{a2}
+$f_{2a} = 1 \Leftrightarrow (x_1x_2x_3x_4)_2 | 1101001 ($in decimal $105=3\times5\times7)$\\
+brings us to column $f_{2a}$ in the table above and leeds to the Karnaugh table:\\
+\begin{tabular}{|c||c|c|c|c|}
+  \hline 
+            & \multicolumn{4}{c|}{$x_3x_4$} \\
+$x_1x_2$ & 00                  & 01                  & 11                 & 10                \\ \hline
+    00   &                     &                     & \cellcolor{green}1 &                   \\ \hline
+    01   &                     & \cellcolor{red}1    & \cellcolor{gray}1  &                   \\ \hline
+    11   &                     &                     & \cellcolor{blue}1  &                   \\ \hline
+    10   &                     &                     &                    &                   \\
+  \hline
+\end{tabular}
+which yields $f_{2a} = \textcolor{red}{\neg x_1x_2x_4}+
+                       \textcolor{green}{\neg x_1x_3x_4}+
+                       \textcolor{blue}{x_2x_3x_4}$
+
+                 
+                 
 \subExercise{b}
+
+
+$f_{2b} = 1 \Leftrightarrow 0000\leq(x_1x_2x_3x_4)_2\leq1001 | 1101001 $ gives column $f_{2b}$ in the table above, Karnaugh table:\\
+\begin{tabular}{|c||c|c|c|c|}
+  \hline 
+            & \multicolumn{4}{c|}{$x_3x_4$} \\
+$x_1x_2$ & 00                  & 01                  & 11                 & 10                \\ \hline
+    00   &                     &                     & \cellcolor{green}1 &                   \\ \hline
+    01   &                     & \cellcolor{red}1    & \cellcolor{yellow}1&                   \\ \hline
+    11   & D                   & \cellcolor{red}D    & \cellcolor{red}D   & D                 \\ \hline
+    10   &                     &                     & D                  & D                 \\
+  \hline
+\end{tabular}
+which yields $f_{2b} = \textcolor{red}{x_2x_4}+\textcolor{green}{\neg x_1x_3x_4}$
+
 
 \end{document}
