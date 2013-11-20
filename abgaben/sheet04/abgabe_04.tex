@@ -49,6 +49,12 @@ Here are the tables for the two circuits we wish to implement
   \hline
 \end{tabular}
 
+If we read $ms$ as numbers with high order bit on the left: 
+\begin{align*}
+  u_{out} &= m_1 \\
+  d &= m_1 + m_2.
+\end{align*}
+
 \vspace{0.5em}
 \begin{tabular}{|c c c|c c|}
   \hline
@@ -65,7 +71,12 @@ Here are the tables for the two circuits we wish to implement
   \hline
 \end{tabular}
 
-this is supposed to be a merge conflict
+Again, in SOP-notation with high-order bit on the left:
+\begin{align*}
+  u_{out} &= m_1 + m_2 + m_3 + m_7 \\
+  d &= m_1 + m_2 + m_4 + m_7.
+\end{align*}
+
 \subExercise{b} 
 More or less compact symbolic representations 
 of these two circuits are as follows 
@@ -80,6 +91,7 @@ of these two circuits are as follows
      m \not\leftrightarrow s \not\leftrightarrow u
     )
 \]
+
 \subExercise{c} 
 Now we want to simplify both components (difference and undeflow) 
 of the full subtractor using Karnaugh diagrams. We begin with the
@@ -91,20 +103,53 @@ difference:
     & & \multicolumn{4}{c|}{minuend / subtrahend} \\
     & & 00 & 01 & 11 & 10 \\
   \hline
-    \multirow{2}{*}{underflow} & 0 & ? & ? & ? & ? \\
-                               & 1 & \cellcolor{red}{?} & ? & ? & ? \\
+    \multirow{2}{*}{underflow} & 0 &   & \cellcolor{blue}1 &   & \cellcolor{orange}1 \\
+                               & 1 & \cellcolor{red}1 &   & \cellcolor{green}1 &   \\
   \hline
 \end{tabular}
- 
+
+It seems that this diagram is not simplifiable at all: we have to cover every
+one by an own 1x1 block. The simpliest expression for difference is thus:
+\[
+  d = \bar m \bar s u + \bar m s \bar u + m s u + m \bar s \bar u
+\]
+
+The ones for the output-underflow can be covered by
+three 2x1 blocks, which all intersect at 011 (we use additive color combination,
+light gray is supposed to be combination of red, green and blue):
+\vspace{0.5em}
+\begin{tabular}{|c c|c c c c|}
+  \hline 
+    & & \multicolumn{4}{c|}{minuend / subtrahend} \\
+    & & 00 & 01 & 11 & 10 \\
+  \hline
+    \multirow{2}{*}{underflow} & 0 & 0 & \cellcolor{green}{1} & 0 & 0 \\
+                               & 1 & \cellcolor{red}{1} & \cellcolor{lightgray}{1} & \cellcolor{blue}{1} & 0 \\
+  \hline
+\end{tabular}
+
+Thus, the simplified formula for the output-underflow is:
+\[
+u_{out} = \bar m u + \bar m s + su.
+\]
+
 \subExercise{d}
+
 \vspace{1em}
 \begin{figure}[h]
-  \centering\includegraphics[width=0.6\linewidth]{images/fullAdder.png}
-  \caption{Full subtractor. Notice that both outputs share some of the AND gates.}
+  \centering\includegraphics[width=\linewidth]{images/halfSubtractor.png}
+  \caption{Half subtractor.}
 \end{figure}
 \vspace{1em}
 
+\vspace{1em}
+\begin{figure}[h]
+  \centering\includegraphics[width=\linewidth]{images/fullSubtractor.png}
+  \caption{Full subtractor. We recycled as many gatters as we could for both sub-circuits. Reason: that's the maximal complexity allowed for free LucidChart accounts...}
+\end{figure}
+\vspace{1em}
 
+\FloatBarrier
 \section*{Exercise 4.3 (TODO)}
 \subExercise{a}
 \subExercise{b}
