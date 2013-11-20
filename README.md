@@ -18,3 +18,7 @@ TI
   But admittedly, I've messed it up on first try...
   4.1 and 4.2 are done.
   Any progress on 4.3, anyone?
+
+2013-11-20 20:00 
+  I had 4.3 on paper since the weekend. Just couldn't find the
+  time to tex it. I will do so now.
