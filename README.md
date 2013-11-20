@@ -12,3 +12,9 @@ TI
 2013-11-20 16:50
   I just continue typing 4.2 
   Any progress on 4.3?
+
+2013-11-20 18:30
+  Oooh damn, that stupid diagram took eternity -.-
+  But admittedly, I've messed it up on first try...
+  4.1 and 4.2 are done.
+  Any progress on 4.3, anyone?
