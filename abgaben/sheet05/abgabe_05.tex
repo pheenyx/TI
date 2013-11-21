@@ -1,0 +1,232 @@
+\documentclass[10pt,a4paper]{scrartcl}
+\PassOptionsToPackage{table}{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{microtype, multicol, marginnote, bera, parskip}
+\usepackage{listings, amsmath, amssymb, graphicx, tikz, epic}
+\usepackage{stmaryrd} %for lightning arrow
+\usepackage{pstricks, pst-node, pst-tree, pdflscape}
+\usepackage[babel=true]{csquotes}
+\usepackage{placeins}
+\tolerance=2000
+\setcounter{secnumdepth}{0}
+\usepackage[inner=2cm,outer=2cm,top=1.5cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage{multirow}
+\newcommand{\subExercise}[1]{\vspace{0.5em} \noindent{\bf #1)}}
+\author{Michael Mardaus \and Andrey Tyukin}
+\title{\includegraphics[scale=0.2]{../logo_schriftzug}\\
+Technische Informatik: Abgabe 5}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercise 5.1 (Quine McClusky and K-Maps)}
+\subExercise{a}
+\begin{tabular}{|l||l|l|l|l|l|l|l|l|l|}\hline
+\#(0) & decimal & $x_1x_2x_3x_4x_5$ & \multicolumn{7}{c|}{Reduction-Links}                \\\hline\hline
+1     & 15      & 01111             & &&&&&&                                   \\
+      & 30      & 11110             & \textcolor{red}{$\star^1$} & \textcolor{orange}{$\star^2$} &&&&&              \\
+      & 29      & 11101             & &&\textcolor{cyan}{$\star^3$}&$\star^4$&$\star^5$&&        \\\hline
+2     & 28      & 11100             & \textcolor{red}{$\star^1$}&&\textcolor{cyan}{$\star^3$}&&&$\star^6$&        \\
+      & 25      & 11001             & &&\textcolor{gray}{$\star^8$}&$\star^4$&&&$\star^7$        \\
+      & 22      & 10110             & &\textcolor{orange}{$\star^2$}&&&&&                          \\
+      & 21      & 10101             & \textcolor{green}{$\star^9$}&&&&$\star^5$&&                 \\\hline
+3     & 24      & 11000             & &$\star^{10}$&&&&$\star^6$&$\star^7$     \\
+      & 17      & 10001             & \textcolor{green}{$\star^9$}&&\textcolor{gray}{$\star^8$}&&&&                 \\
+      & 9       & 01001             & &&\textcolor{violet}{$\star^{11}$}&&&&                       \\\hline
+4     & 8       & 01000             & \textcolor{blue}{$\star^{12}$}&$\star^{10}$&\textcolor{violet}{$\star^{11}$}&&&&\\
+      & 2       & 00010             & &\textcolor{magenta}{$\star^{13}$}&&&&&                       \\\hline
+5     & 0       & 00000             & \textcolor{blue}{$\star^{12}$}&\textcolor{magenta}{$\star^{13}$}&&&&&           \\\hline
+\end{tabular}\\
+\hspace*{3cm}$\Downarrow$\hspace*{3cm}$\Downarrow$\\
+\hspace*{3.5mm}
+\begin{tabular}{|l||l|l|l|l|l|l|}\hline
+\#(0) & decimal & $x_1x_2x_3x_4x_5$ & \multicolumn{4}{c|}{Reduction-Links}                \\\hline\hline
+1     & 15      & 01111             & &&&                                   \\
+      & 28,30   & 111*0             & &&&              \\
+      & 22,30   & 1*110             & &&&        \\
+      & 28,29   & 1110*             & \textcolor{red}{$\star^1$}&&&        \\
+      & 25,29   & 11*01             & &\textcolor{green}{$\star^2$}&\textcolor{blue}{$\star^3$}&        \\
+      & 21,29   & 1*101             & &&&\textcolor{orange}{$\star^4$}                          \\\hline
+2     & 24,28   & 11*00             & &\textcolor{green}{$\star^2$}&&                \\
+      & 24,25   & 1100*             & \textcolor{red}{$\star^1$}&&&     \\
+      & 17,25   & 1*001             & &&&\textcolor{orange}{$\star^4$}                 \\
+      & 17,21   & 10*01             & &&\textcolor{blue}{$\star^3$}&                    \\\hline
+3     & 8,24    & *1000             & &&&\\
+      & 8,9     & 0100*             & &&&                       \\\hline
+4     & 0,8     & 0*000             & &&&           \\
+      & 0,2     & 000*0             & &&&           \\\hline
+\end{tabular}\\
+\hspace*{3cm}$\Downarrow$\hspace*{3cm}$\Downarrow$\\
+\hspace*{3.5mm}
+\begin{tabular}{|l||l|l|}\hline
+\#(0) & decimal     & $x_1x_2x_3x_4x_5$    \\\hline\hline
+1     & 15          & 01111                \\
+      & 28,30       & 111*0                \\
+      & 22,30       & 1*110                \\
+      & 24,25,28,29 & 11*0*                \\
+      & 17,21,25,29 & 1**01                \\\hline
+3     & 8,24        & *1000                \\
+      & 8,9         & 0100*                \\\hline
+4     & 0,2         & 000*0                \\\hline
+\end{tabular}\\
+\hspace*{3cm}$\Downarrow$\hspace*{3cm}$\Downarrow$\\
+\hspace*{3.5mm}
+\begin{tabular}{|l||l|l|l|l|l|l|l|l|l|l|l|l|l|l|}\hline
+Primimplicant & 0 & 2 & \cellcolor{gray}8 & 9 & 15 & 17 & \cellcolor{gray}21 & 22 & 24 & \cellcolor{gray}25 & 28 & \cellcolor{gray}29 & \cellcolor{gray}30 &  \\\hline\hline
+ 01111        &   &   & \cellcolor{gray}  &   & 1  &    & \cellcolor{gray}   &    &    & \cellcolor{gray}   &    & \cellcolor{gray}   & \cellcolor{gray}   & \\\hline
+ \cellcolor{gray}111*0        & \cellcolor{gray}  & \cellcolor{gray}  & \cellcolor{gray}  & \cellcolor{gray}  & \cellcolor{gray}   & \cellcolor{gray}   & \cellcolor{gray}   & \cellcolor{gray}   &  \cellcolor{gray}  & \cellcolor{gray}   & \cellcolor{gray}1  & \cellcolor{gray}   & \cellcolor{gray}1  & reduced r 4\\ \hline
+ 1*110        &   &   & \cellcolor{gray}  &   &    &    & \cellcolor{gray}   & 1  &    & \cellcolor{gray}   &    & \cellcolor{gray}   & \cellcolor{gray}1  & \\
+ 11*0*        &   &   & \cellcolor{gray}  &   &    &    & \cellcolor{gray}   &    & 1  & \cellcolor{gray}1  & 1  & \cellcolor{gray}1  & \cellcolor{gray}   & \\
+ 1**01        &   &   & \cellcolor{gray}  &   &    & 1  & \cellcolor{gray}1  &    &    & \cellcolor{gray}1  &    & \cellcolor{gray}1  & \cellcolor{gray}   & \\  \hline
+ \cellcolor{gray}*1000        & \cellcolor{gray}  & \cellcolor{gray}  & \cellcolor{gray}1 &  \cellcolor{gray} & \cellcolor{gray}   & \cellcolor{gray}   & \cellcolor{gray}   & \cellcolor{gray}   & \cellcolor{gray}1  & \cellcolor{gray}   & \cellcolor{gray}   & \cellcolor{gray}   & \cellcolor{gray}   & reduced r 4\\  \hline
+ 0100*        &   &   & \cellcolor{gray}1 & 1 &    &    & \cellcolor{gray}   &    &    & \cellcolor{gray}   &    & \cellcolor{gray}   & \cellcolor{gray}   & \\
+ 000*0        & 1 & 1 & \cellcolor{gray}  &   &    &    & \cellcolor{gray}   &    &    & \cellcolor{gray}   &    & \cellcolor{gray}   & \cellcolor{gray}   & \\ \hline
+ reduced b/c  &   &   & c9                &   &    &    & c17                &    &    & c17                &    & c17                & c22                & \\ \hline
+\end{tabular}
+
+...here lives the big table for row and column cheating...\\
+
+$\Longrightarrow f = \neg x_1x_2\neg x_3\neg x_4+
+                     \neg x_1\neg x_2\neg x_3\neg x_5+
+                     \neg x_1x_2x_3x_4x_5+
+                     x_1x_2\neg x_4+
+                     x_1\neg x_4x_5+
+                     x_1x_3x_4\neg x_5$\\
+
+
+\subExercise{b}
+Use K-Maps to find a cost-minimal DNF.\\
+\begin{tabular}{|c||c|c|c|c|}
+  \hline
+  \multicolumn{5}{|c|}{$x_1=0$} \\ \hline
+            & \multicolumn{4}{c|}{$x_4x_5$} \\
+$x_2x_3$ & 00                  & 01                  & 11                 & 10                  \\ \hline\hline
+    00   & \cellcolor{orange}1 &                     &                    & \cellcolor{orange}1 \\ \hline
+    01   &                     &                     &                    &                     \\ \hline
+    11   &                     &                     & 1                  &                     \\ \hline
+    10   & \cellcolor{blue}1   & \cellcolor{blue}1   &                    &                     \\
+  \hline
+\end{tabular}
+\begin{tabular}{|c||c|c|c|c|}
+  \hline
+  \multicolumn{5}{|c|}{$x_1=1$} \\ \hline
+            & \multicolumn{4}{c|}{$x_4x_5$} \\
+$x_2x_3$ & 00                  & 01                  & 11                 & 10                  \\ \hline\hline
+    00   &                     & \cellcolor{green}1  &                    &                     \\ \hline
+    01   &                     & \cellcolor{green}1  &                    & \cellcolor{magenta}1\\ \hline
+    11   & \cellcolor{red}1    & \cellcolor{yellow}1 &                    & \cellcolor{magenta}1\\ \hline
+    10   & \cellcolor{red}1    & \cellcolor{yellow}1 &                    &                     \\
+  \hline
+\end{tabular}\\[5mm]
+which yields: $f   =  \textcolor{blue}{\neg x_1x_2\neg x_3\neg x_4}+
+                      \textcolor{orange}{\neg x_1\neg x_2\neg x_3\neg x_5}+
+                      \neg x_1x_2x_3x_4x_5+
+                      \textcolor{red}{x_1x_2\neg x_4}+
+                      \textcolor{green}{x_1\neg x_4x_5}+
+                      \textcolor{magenta}{x_1x_3x_4\neg x_5}$\\
+The same result as in part a).
+
+
+\FloatBarrier
+\newpage
+\section*{Exercise 5.2 (Row and Column-Rules are no function)}
+\begin{tabular}{|c||c|c|c|}
+  \hline
+Primimplic.       & \cellcolor{gray}$C_1=0$  & $C_2=1$   & $C_3=2$           \\ \hline\hline
+$R_1 = 01$     & \cellcolor{gray}         & 1         &                   \\ \hline
+$R_2 = 0\ast$  & \cellcolor{gray}1        & 1         &                   \\ \hline
+$R_3 = \ast 0$ & \cellcolor{gray}1        &           & 1                 \\
+  \hline
+\end{tabular}\\
+We deleted Column $C_1$ with the Column-Rule, because $C_3 \leq C_1$ and overlaps it. Now we can either use $R_3+R_2 = \neg x_2+\neg x_1$ or $R_3+R_1 = \neg x_2 + \neg x_1x_2$
+as our minimal solution.
+
+\FloatBarrier
+\section*{Exercise 5.3 (?)}
+
+\begin{tabular}{|l||l|l|l|l||l||l|l|}\hline
+i & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $f_1$ & $f_{2a}$ & $f_{2b}$ \\\hline\hline
+0 & 0 & 0 & 0 & 0 &                 &   &    \\\hline
+1 & 0 & 0 & 0 & 1 &                 &   &    \\\hline
+2 & 0 & 0 & 1 & 0 &    1 ($B_2$)    &   &    \\\hline
+3 & 0 & 0 & 1 & 1 &    1 ($B_3$)    & 1 & 1  \\\hline
+4 & 0 & 1 & 0 & 0 &                 &   &    \\\hline
+5 & 0 & 1 & 0 & 1 &    1 ($B_3$)    & 1 & 1  \\\hline
+6 & 0 & 1 & 1 & 0 &                 &   &    \\\hline
+7 & 0 & 1 & 1 & 1 &                 & 1 & 1  \\\hline
+8 & 1 & 0 & 0 & 0 &    1 ($B_1$)    &   &    \\\hline
+9 & 1 & 0 & 0 & 1 &    0 ($B_1+B_3$)&   &    \\\hline
+10 & 1 & 0 & 1 & 0 &   1 ($B_1$)    &   & D  \\\hline
+11 & 1 & 0 & 1 & 1 &   1 ($B_1$)    &   & D  \\\hline
+12 & 1 & 1 & 0 & 0 &                &   & D  \\\hline
+13 & 1 & 1 & 0 & 1 &                &   & D  \\\hline
+14 & 1 & 1 & 1 & 0 &                &   & D  \\\hline
+15 & 1 & 1 & 1 & 1 &                & 1 & D  \\\hline
+\end{tabular}
+
+\subExercise{a1}
+$f_1 = 1 \Leftrightarrow B_1 . \neg B_2 . \neg B_3 + \neg B_1 . B_2 . \neg B_3 + \neg B_1 . \neg B_2 . B_3$ \\ where
+\begin{itemize}
+ \item $B_1 = 1 \Leftrightarrow x_1 . \neg x_2 = 1$
+ \item $B_2 = 1 \Leftrightarrow \neg x_1 . \neg x_2 . x_3 . \neg x_4  = 1$
+ \item $B_3 = 1 \Leftrightarrow x_4 . \text{only one of}(x_1,x_2,x_3) = 1$
+\end{itemize}
+brings us to column $f_1$ in the table above and leeds to the Karnaugh table:
+
+\begin{tabular}{|c||c|c|c|c|}
+  \hline
+            & \multicolumn{4}{c|}{$x_3x_4$} \\
+$x_1x_2$ & 00                  & 01                  & 11                 & 10                \\ \hline
+    00   &                     & \cellcolor{yellow}1 & \cellcolor{green}1 &                   \\ \hline
+    01   &                     & \cellcolor{red}1    &                    &                   \\ \hline
+    11   &                     &                     &                    &                   \\ \hline
+    10   & \cellcolor{orange}1 &                     & \cellcolor{blue}1  & \cellcolor{blue}1 \\
+  \hline
+\end{tabular}
+which yields: $f_1 =  \textcolor{blue}{x_1\neg x_2x_3}+
+                      \textcolor{red}{\neg x_1\neg x_3x_4}+
+                      \textcolor{green}{\neg x_1\neg x_2x_4}+
+                      \textcolor{orange}{x_1\neg x_2\neg x_3\neg x_4}$
+
+
+
+\subExercise{a2}
+$f_{2a} = 1 \Leftrightarrow (x_1x_2x_3x_4)_2 | 1101001 ($in decimal $105=3\times5\times7)$\\
+brings us to column $f_{2a}$ in the table above and leeds to the Karnaugh table:\\
+\begin{tabular}{|c||c|c|c|c|}
+  \hline
+            & \multicolumn{4}{c|}{$x_3x_4$} \\
+$x_1x_2$ & 00                  & 01                  & 11                 & 10                \\ \hline
+    00   &                     &                     & \cellcolor{green}1 &                   \\ \hline
+    01   &                     & \cellcolor{red}1    & \cellcolor{gray}1  &                   \\ \hline
+    11   &                     &                     & \cellcolor{blue}1  &                   \\ \hline
+    10   &                     &                     &                    &                   \\
+  \hline
+\end{tabular}
+which yields $f_{2a} = \textcolor{red}{\neg x_1x_2x_4}+
+                       \textcolor{green}{\neg x_1x_3x_4}+
+                       \textcolor{blue}{x_2x_3x_4}$
+
+
+
+\subExercise{b}
+
+
+$f_{2b} = 1 \Leftrightarrow 0000\leq(x_1x_2x_3x_4)_2\leq1001 | 1101001 $ gives column $f_{2b}$ in the table above, Karnaugh table:\\
+\begin{tabular}{|c||c|c|c|c|}
+  \hline
+            & \multicolumn{4}{c|}{$x_3x_4$} \\
+$x_1x_2$ & 00                  & 01                  & 11                 & 10                \\ \hline
+    00   &                     &                     & \cellcolor{green}1 &                   \\ \hline
+    01   &                     & \cellcolor{red}1    & \cellcolor{yellow}1&                   \\ \hline
+    11   & D                   & \cellcolor{red}D    & \cellcolor{red}D   & D                 \\ \hline
+    10   &                     &                     & D                  & D                 \\
+  \hline
+\end{tabular}
+which yields $f_{2b} = \textcolor{red}{x_2x_4}+\textcolor{green}{\neg x_1x_3x_4}$
+
+
+\end{document}

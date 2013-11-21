@@ -1,0 +1,1 @@
+pdflatex --halt-on-error abgabe_05.tex && okular abgabe_05.pdf
