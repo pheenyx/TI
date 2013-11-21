@@ -29,3 +29,8 @@ TI
 2013-11-21 18:03
   Starting with number2
   And my solution for 1b. (1a is just ugly to draw)
+
+2013-11-21 20:49
+  Done with 5.1a and b and 5.2
+  If you are still on your generic java solver program, you can take a look
+  if my solution is correct
