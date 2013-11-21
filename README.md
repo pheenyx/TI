@@ -25,3 +25,7 @@ TI
 
 2013-11-20 21:00
   sheet04 done!
+
+2013-11-21 18:03
+  Starting with number2
+  And my solution for 1b. (1a is just ugly to draw)
