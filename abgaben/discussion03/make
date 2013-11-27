@@ -1,0 +1,1 @@
+pdflatex --halt-on-error discussion_03.tex && okular discussion_03.pdf
