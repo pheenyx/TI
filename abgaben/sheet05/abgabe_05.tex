@@ -22,8 +22,10 @@ Technische Informatik: Abgabe 5}
 
 \maketitle
 
-\section*{Exercise 5.1 (Quine McClusky and K-Maps)}
-\subExercise{a}
+\section*{Exercise 5.1 (Quine McCluskey and K-maps)}
+\subExercise{a} We apply the Quine McCluskey algorithm to obtain optimal disjunctive representation of $f$.
+
+\vspace{0.5em}
 \begin{tabular}{|l||l|l|l|l|l|l|l|l|l|}\hline
 \#(0) & decimal & $x_1x_2x_3x_4x_5$ & \multicolumn{7}{c|}{Reduction-Links}                \\\hline\hline
 1     & 15      & 01111             & &&&&&&                                   \\
@@ -132,7 +134,7 @@ The same result as in part a).
 
 \FloatBarrier
 \newpage
-\section*{Exercise 5.2 (Row and Column-Rules are no function)}
+\section*{Exercise 5.2 (Row and Column-Rules are not a function)}
 \begin{tabular}{|c||c|c|c|}
   \hline
 Primimplic.       & \cellcolor{gray}$C_1=0$  & $C_2=1$   & $C_3=2$           \\ \hline\hline
@@ -145,88 +147,43 @@ We deleted Column $C_1$ with the Column-Rule, because $C_3 \leq C_1$ and overlap
 as our minimal solution.
 
 \FloatBarrier
-\section*{Exercise 5.3 (?)}
+\section*{Exercise 5.3 (Greedy Algorithm)}
+We consider boolean matrices with at least one $1$ in each column and 
+at most two $1$'s in each row. 
+The greedy algorithm repeatedly traverses all rows
+and in each step chooses the row that covers the most columns, until all
+colums are covered.
+ We assume top-down traversal order, furthermore we assume that if two rows
+cover the same number of columns, that the one with smaller index is chosen.
 
-\begin{tabular}{|l||l|l|l|l||l||l|l|}\hline
-i & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $f_1$ & $f_{2a}$ & $f_{2b}$ \\\hline\hline
-0 & 0 & 0 & 0 & 0 &                 &   &    \\\hline
-1 & 0 & 0 & 0 & 1 &                 &   &    \\\hline
-2 & 0 & 0 & 1 & 0 &    1 ($B_2$)    &   &    \\\hline
-3 & 0 & 0 & 1 & 1 &    1 ($B_3$)    & 1 & 1  \\\hline
-4 & 0 & 1 & 0 & 0 &                 &   &    \\\hline
-5 & 0 & 1 & 0 & 1 &    1 ($B_3$)    & 1 & 1  \\\hline
-6 & 0 & 1 & 1 & 0 &                 &   &    \\\hline
-7 & 0 & 1 & 1 & 1 &                 & 1 & 1  \\\hline
-8 & 1 & 0 & 0 & 0 &    1 ($B_1$)    &   &    \\\hline
-9 & 1 & 0 & 0 & 1 &    0 ($B_1+B_3$)&   &    \\\hline
-10 & 1 & 0 & 1 & 0 &   1 ($B_1$)    &   & D  \\\hline
-11 & 1 & 0 & 1 & 1 &   1 ($B_1$)    &   & D  \\\hline
-12 & 1 & 1 & 0 & 0 &                &   & D  \\\hline
-13 & 1 & 1 & 0 & 1 &                &   & D  \\\hline
-14 & 1 & 1 & 1 & 0 &                &   & D  \\\hline
-15 & 1 & 1 & 1 & 1 &                & 1 & D  \\\hline
+\subExercise{a} {\textbf{Claim:}} The greedy algorithm generally does not find the
+optimal solution.
+
+\noindent {\textbf{Proof:}} Consider the following example:
+
+\vspace{0.5em}
+\begin{tabular}{|c c c c|}
+\hline
+1 & 1 & 0 & 0 \\
+1 & 0 & 1 & 0 \\
+0 & 1 & 0 & 1 \\
+\hline
 \end{tabular}
 
-\subExercise{a1}
-$f_1 = 1 \Leftrightarrow B_1 . \neg B_2 . \neg B_3 + \neg B_1 . B_2 . \neg B_3 + \neg B_1 . \neg B_2 . B_3$ \\ where
-\begin{itemize}
- \item $B_1 = 1 \Leftrightarrow x_1 . \neg x_2 = 1$
- \item $B_2 = 1 \Leftrightarrow \neg x_1 . \neg x_2 . x_3 . \neg x_4  = 1$
- \item $B_3 = 1 \Leftrightarrow x_4 . \text{only one of}(x_1,x_2,x_3) = 1$
-\end{itemize}
-brings us to column $f_1$ in the table above and leeds to the Karnaugh table:
+In the first iteration each row covers two columns, therefore the algorithm would just pick the first row.
+In subsequent steps, it also has to take second and third row into the cover, because both are necessary (there is only one $1$ in third and fourth column). However, the optimal solution does not require all rows: the second and third row alone would be sufficient.
 
-\begin{tabular}{|c||c|c|c|c|}
-  \hline
-            & \multicolumn{4}{c|}{$x_3x_4$} \\
-$x_1x_2$ & 00                  & 01                  & 11                 & 10                \\ \hline
-    00   &                     & \cellcolor{yellow}1 & \cellcolor{green}1 &                   \\ \hline
-    01   &                     & \cellcolor{red}1    &                    &                   \\ \hline
-    11   &                     &                     &                    &                   \\ \hline
-    10   & \cellcolor{orange}1 &                     & \cellcolor{blue}1  & \cellcolor{blue}1 \\
-  \hline
-\end{tabular}
-which yields: $f_1 =  \textcolor{blue}{x_1\neg x_2x_3}+
-                      \textcolor{red}{\neg x_1\neg x_3x_4}+
-                      \textcolor{green}{\neg x_1\neg x_2x_4}+
-                      \textcolor{orange}{x_1\neg x_2\neg x_3\neg x_4}$
+\subExercise{b} Let $n$ be the number of rows and $m$ be the number of columns of the matrix (the restrictions on the numbers of $1$'s in rows and column shall still hold).
 
+{\textbf{Claim:}} There exists a cover with $m - k \leq m$ rows iff there exists 
+$K\subset\{1,\dots,n\}$ of cardinality $k$ such that rows $\{z_j\}_{j\in K}$ cover $2 k$ columns.
 
+\noindent {\textbf{Proof:}} First, let there be such a subset $K$. By assumption, $\{z_j\}_{j\in K}$ 
+already cover $2 k$ columns, and $m - 2 k$ columns remain uncovered. Because there is at least one $1$ in each of the remaining $m - 2 k$ columns, we need at most $l \leq m - 2 k$ more rows to cover these columns. Together, we need $k + l \leq k + (m - 2 k) = m - k$ rows to cover all columns.
 
-\subExercise{a2}
-$f_{2a} = 1 \Leftrightarrow (x_1x_2x_3x_4)_2 | 1101001 ($in decimal $105=3\times5\times7)$\\
-brings us to column $f_{2a}$ in the table above and leeds to the Karnaugh table:\\
-\begin{tabular}{|c||c|c|c|c|}
-  \hline
-            & \multicolumn{4}{c|}{$x_3x_4$} \\
-$x_1x_2$ & 00                  & 01                  & 11                 & 10                \\ \hline
-    00   &                     &                     & \cellcolor{green}1 &                   \\ \hline
-    01   &                     & \cellcolor{red}1    & \cellcolor{gray}1  &                   \\ \hline
-    11   &                     &                     & \cellcolor{blue}1  &                   \\ \hline
-    10   &                     &                     &                    &                   \\
-  \hline
-\end{tabular}
-which yields $f_{2a} = \textcolor{red}{\neg x_1x_2x_4}+
-                       \textcolor{green}{\neg x_1x_3x_4}+
-                       \textcolor{blue}{x_2x_3x_4}$
-
-
-
-\subExercise{b}
-
-
-$f_{2b} = 1 \Leftrightarrow 0000\leq(x_1x_2x_3x_4)_2\leq1001 | 1101001 $ gives column $f_{2b}$ in the table above, Karnaugh table:\\
-\begin{tabular}{|c||c|c|c|c|}
-  \hline
-            & \multicolumn{4}{c|}{$x_3x_4$} \\
-$x_1x_2$ & 00                  & 01                  & 11                 & 10                \\ \hline
-    00   &                     &                     & \cellcolor{green}1 &                   \\ \hline
-    01   &                     & \cellcolor{red}1    & \cellcolor{yellow}1&                   \\ \hline
-    11   & D                   & \cellcolor{red}D    & \cellcolor{red}D   & D                 \\ \hline
-    10   &                     &                     & D                  & D                 \\
-  \hline
-\end{tabular}
-which yields $f_{2b} = \textcolor{red}{x_2x_4}+\textcolor{green}{\neg x_1x_3x_4}$
-
-
+For the opposite direction, let $C \subset \{1,\dots,n\}$ with $|C| = m - k$ be a subset of row-indices which cover all $m$ columns. 
+Let $\hat K \subset C$ be a maximal set with the property that $\{z_j\}_{j\in \hat K}$ cover $2 |\hat K|$ rows. 
+Because of the maximality and the restriction that there are at most two $1$'s per row, adding further rows with indices from $C - \hat K$ to $\hat K$ increases the number of covered columns at most by $1$ per added row, that is, 
+we can cover at most $2 |\hat K| + (|C| - |\hat K|) = |\hat K| + |C| = |\hat K| + m - k$ rows. 
+If $|\hat K| < k$ would hold, then we could cover at most $m - 1$ columns, which contradicts the assumption that rows with indices from $C$ cover \emph{all} columns. Therefore $|\hat K| \geq k$ must hold. In particular, there exists a subset $K \subset \hat K$ of size exactly $k$ such that $\{z_j\}_{j\in K}$ cover exactly $2 k$ columns.
 \end{document}
