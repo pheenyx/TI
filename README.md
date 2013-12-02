@@ -1,5 +1,8 @@
 TI
 ==
+2013-12-02 22:20 MM
+done with 6.1 and done for today
+
 2013-12-02 21:01 MM
   Starting with 6.1 and maybe 6.3
 
