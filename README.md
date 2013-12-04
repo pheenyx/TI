@@ -1,7 +1,12 @@
 TI
 ==
+2013-12-04 16:27 AT
+  Just looking around what I can do...
+  Ok, I look at 6.2 first, and try to finish everything else 
+  (if something is still missing)
+
 2013-12-02 22:20 MM
-done with 6.1 and done for today
+  done with 6.1 and done for today
 
 2013-12-02 21:01 MM
   Starting with 6.1 and maybe 6.3
