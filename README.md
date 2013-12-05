@@ -1,5 +1,8 @@
 TI
 ==
+2013-12-05 01:55 AT
+  Solved 6.2. The original statement looked like pile of bullcrap -.-
+
 2013-12-04 16:27 AT
   Just looking around what I can do...
   Ok, I look at 6.2 first, and try to finish everything else 

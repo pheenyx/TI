@@ -28,6 +28,7 @@ Technische Informatik: Abgabe 6}
 \section*{Exercise 6.1 (Circuit jam)}
 $f(x_1,x_2,x_3) = \bar x_1x_3+x_2$\\
 \includegraphics[width=3cm]{images/circuit.png} \hspace{1.5cm}
+
 \begin{tabular}{ll}
 $f_1,\dots,f_5$ are 0-jams & $f_6,\dots,f_a$ are 1-jams.\\\hline
  $f_1(x_1,x_2,x_3) = \bar 0x_3+x_2 = x_3+x_2$ & $f_6(x_1,x_2,x_3) = \bar 1x_3+x_2 = x_2$ \\
@@ -40,6 +41,7 @@ $f_1,\dots,f_5$ are 0-jams & $f_6,\dots,f_a$ are 1-jams.\\\hline
 \vspace{1cm}
 
 Ausfalltafel:
+
 \begin{tabular}{|l||lll||l|l|l|l|l|l|l|l|l|l||l|}\hline
 \# & $x_1$&$x_2$&$x_3$&$f_1$&$f_2$&$f_3$&$f_4$&$f_5$&$f_6$&$f_7$&$f_8$&$f_9$&$f_a$&$f$ \\\hline\hline
 0  & 0&0&0            & 0   & 0   & 0   & 0   & 0   & 0   & 1   & 1   & 0   & 1   & 0  \\
@@ -55,6 +57,7 @@ Ausfalltafel:
 $\Longrightarrow f_1=f_9 ; f_2 ; f_3=f_4=f_5=f_6 ; f_7=f_a ; f_8$
 
 Ausfallmatrix:
+
 \begin{tabular}{|l||lll||l|l|l|l|l||l|}\hline
 \# & $x_1$&$x_2$&$x_3$&$f_1$&$f_2$&$f_3$&$f_7$&$f_8$&$f$ \\\hline\hline
 0  & 0&0&0            & 0   & 0   & 0   & 1   & 1   & 0  \\
@@ -68,6 +71,7 @@ Ausfallmatrix:
 \end{tabular}
 
 Fehlermatrix:
+
 \begin{tabular}{|l||lll||l|l|l|l|l||l|}\hline
 \# & $x_1$&$x_2$&$x_3$&$f\nleftrightarrow f_1$&$f\nleftrightarrow f_2$&$f\nleftrightarrow f_3$&$f\nleftrightarrow f_7$&$f\nleftrightarrow f_8$ & Test\\\hline\hline
 0  & 0&0&0            & 0   & 0   & 0   & 1   & 1 & $\star$ \\
@@ -196,24 +200,42 @@ SOP are prime.
 \FloatBarrier
 \section*{Exercise 6.3 (Hazards)}
 
-%Dummy table please leave it here
+\subExercise{a} We use a Karnaugh-diagram to derive an optimal SOP-representation:
 
 \begin{tabular}{|c||c|c|c|c|}
   \hline
-  \multicolumn{5}{|c|}{$x_1=1$} \\ \hline
-            & \multicolumn{4}{c|}{$x_4x_5$} \\
-$x_2x_3$ & 00                  & 01                  & 11                 & 10                  \\ \hline\hline
-    00   &                     & \cellcolor{green}1  &                    &                     \\ \hline
-    01   &                     & \cellcolor{green}1  &                    & \cellcolor{magenta}1\\ \hline
-    11   & \cellcolor{red}1    & \cellcolor{yellow}1 &                    & \cellcolor{magenta}1\\ \hline
-    10   & \cellcolor{red}1    & \cellcolor{yellow}1 &                    &                     \\
+    & \multicolumn{4}{c|}{$x_1x_2$} \\
+$x_3x_4$ & 00                   & 01                    & 11                 & 10               \\ \hline\hline
+    00   &                      &                       & \cellcolor{green}1 &                  \\ \hline
+    01   & \cellcolor{magenta}1 & \cellcolor{magenta}1  & \cellcolor{gray}1  & \cellcolor{blue}1 \\ \hline
+    11   & \cellcolor{red}1     & \cellcolor{red}1      & \cellcolor{green}1 &                  \\ \hline
+    10   &                      &                       & \cellcolor{green}1 &                  \\
   \hline
-\end{tabular}\\[5mm]
-which yields: $f   =  \textcolor{blue}{\neg x_1x_2\neg x_3\neg x_4}+
-                      \textcolor{orange}{\neg x_1\neg x_2\neg x_3\neg x_5}+
-                      \neg x_1x_2x_3x_4x_5+
-                      \textcolor{red}{x_1x_2\neg x_4}+
-                      \textcolor{green}{x_1\neg x_4x_5}+
-                      \textcolor{magenta}{x_1x_3x_4\neg x_5}$\\
+\end{tabular}
 
+which yields: $f   =  \textcolor{blue}{\bar x_3 x_4} +
+                      \textcolor{green}{x_1 x_2} +
+                      \textcolor{red}{\bar x_1 x_4}$.
+
+The corresponding two-layer circuit is as follows:
+
+\begin{figure}
+  \centering\includegraphics[width=0.4\linewidth]{images/exercise_6_3.png}
+\end{figure}
+\FloatBarrier
+
+\subExercise{b} Here are example hazards for $k=1$ and $k=2$ ($k$ is number of variables that keep their value):
+\begin{align*}
+  f(1100) = 1 \quad \to \quad f(0100) = 0 \quad \to \quad f(0000) = 0 \quad \to \quad f(0001) = 1 \\
+  f(0011) = 1 \quad \to \quad f(1011) = 0 \quad \to \quad f(1111) = 1
+\end{align*}
+
+\subExercise{c} The circuit above has a circuit-hazard $f(1111) = 1 \quad \to \quad f(0111) = 1$.
+It can occur as follows. In the beginning, first AND-gate is on, and the other two are off. When 
+$x_1$ changes it's value to $0$, the first AND-gate can change it's value to $0$ a little bit earlier
+than the third AND-gate changes it's value to $1$ (because the wire to third gate is longer and 
+contains an additional inverter). This results in all three AND-gates switched off for a short 
+period of time, the output is $0$.
+
+This circuit hazard can be seen in the Karnaugh-diagram as change from $\textcolor{red}{red}$ to $\textcolor{green}{green}$.
 \end{document}
