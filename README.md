@@ -1,5 +1,8 @@
 TI
 ==
+2013-12-08 21:12 MM
+  Solved 7.1 and 7.3. I hope 7.1 is correct, it seemed too easy.
+
 2013-12-05 01:55 AT
   Solved 6.2. The original statement looked like pile of bullcrap -.-
 
