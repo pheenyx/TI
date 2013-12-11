@@ -1,5 +1,14 @@
 TI
 ==
+2013-12-11 14:46 AT
+  Started working on 7.2 and 7.4. No idea how long it will take, but
+  I'll definitely submit pdf-version tomorrow until 11:00. Paper-
+  version would be nice too, check in the morning if you want.
+  
+  Our stupid homework is under GNU licence? Does it mean that every 
+  retard who copies it without mentioning our names actually breaks 
+  some funny laws? Awesome^^ :D
+
 2013-12-08 21:12 MM
   Solved 7.1 and 7.3. I hope 7.1 is correct, it seemed too easy.
 

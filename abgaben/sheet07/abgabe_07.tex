@@ -15,6 +15,7 @@
 \usepackage[inner=2cm,outer=2cm,top=1.5cm,bottom=1.5cm,includeheadfoot]{geometry}
 \usepackage{multirow}
 \newcommand{\subExercise}[1]{\vspace{0.5em} \noindent{\bf #1)}}
+\newcommand{\B}{\mathbb{B}}
 \DeclareMathOperator{\op}{op}
 
 \author{Michael Mardaus \and Andrey Tyukin}
@@ -94,6 +95,65 @@ and that leads us to this circuit:\\
 
 
 \FloatBarrier
-\section*{Exercise 7.4 (Neumann-Adder)}
+\section*{Exercise 7.4 (von Neumann-Adder)}
+Let $A$ be a von Neumann adder with registers of size $n$.
+We want to describe this adder as a finite automaton.
+For this, we let $Q:=\B^n\times\B^n\times\B\times\B$ be the set of possible states, 
+and interpret it as follows: 
+$\textrm{accumulator}\in \B^n$, 
+$\textrm{carry}\in \B^n$, 
+$\textrm{highOrderBit}\in \B$,
+$\textrm{moreWorkToDo}\in \B$ 
+(in this order). As in the lecture and the book, we are not concerned with reading
+the inputs into the registers or writing the results to somewhere else, so we set
+input/output alphabets $\Sigma, \Delta = \emptyset$ and let the start state $q_0$ be
+arbitrary from $\B^n\times\B^n\times\{0\}\times\{1\}$ (in the beginning, the highest
+order carry-bit should not be set, and the $\textrm{moreWorkToDo}$ shall indicate 
+that there is something to do).
+The end states can be set to $F=\B^n\times\B^n\times\B\times\{0\}$. 
+The transition function is then as follows (colon means that we prepend a zero to the tuple, empty word $\epsilon$ is omitted on both sides):
+\begin{align*}
+  \delta\left(
+    (a_i)_{i=1}^n,
+    (c_i)_{i=1}^n,
+    h,
+    t
+  \right) 
+  =
+  \left(
+    (a_i \not\leftrightarrow b_i)_{i=1}^n,
+    0 : (a_{i-1} \wedge b_{i-1})_{i=2}^n,
+    h \vee (a_n \wedge b_n),
+    \bigvee_{i=2}^n(a_{i-1} \wedge b_{i-1})
+  \right).
+\end{align*}
+
+Just to verify that this indeed does what we want, we implemented it literally, here is an
+example of adding $568468843+708052434$ in 30-bit registers:
+\begin{verbatim}
+Acc:   110101101010010001000111100001
+Carry: 010010111010000000101100010101
+Highest bit: false
+Acc:   100111010000010001101011110100
+Carry: 001000010101000000000010000000
+Highest bit: true
+Acc:   101111000101010001101001110100
+Carry: 000000001000000000000001000000
+Highest bit: true
+Acc:   101111001101010001101000110100
+Carry: 000000000000000000000000100000
+Highest bit: true
+Acc:   101111001101010001101000010100
+Carry: 000000000000000000000000010000
+Highest bit: true
+Acc:   101111001101010001101000000100
+Carry: 000000000000000000000000001000
+Highest bit: true
+1276521277
+
+$ echo $((568468843+708052434))
+1276521277
+\end{verbatim}
 
 \end{document}
+
