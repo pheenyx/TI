@@ -33,6 +33,33 @@ Let FF1 be a $0\rightarrow 1$ flank controlled D-flipflop and FF2 a $1\rightarro
 \FloatBarrier
 \section*{Exercise 7.2 (Flipflops)}
 
+\subExercise{a} The state diagram for the automaton:
+
+\begin{figure}[h]
+  \includegraphics[width=0.5\linewidth]{images/exercise_7_2_a.png}
+\end{figure}
+
+\subExercise{b} For the implementation with D-Flip-Flops, we construct the K-Maps first
+(notice that there are quite a few Don't-Care entries):
+\begin{figure}[h]
+  \includegraphics[width=\linewidth]{images/exercise_7_2_b.png}
+\end{figure}
+
+\noindent Possible (nearly) optimal formulas are:
+\begin{align*}
+  Y_3 &= \bar w + y_2 \bar y_1 \\
+  Y_2 &= \bar y_3 y_1 + y_2 \bar w + y_3 \bar w \\
+  Y_1 &= y_1 \bar w + y_2 \bar w + y_3 \bar w + \bar y_1 \bar y_2 \bar y_3 w
+\end{align*}
+
+
+\noindent This gives us the following circuit:
+\begin{figure}[h]
+  \includegraphics[width=\linewidth]{images/exercise_7_2_circuit.png}
+\end{figure}
+
+\FloatBarrier
+\subExercise{c} (omitted)
 
 \FloatBarrier
 \section*{Exercise 7.3 (Gum machine)}
