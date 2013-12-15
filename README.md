@@ -1,5 +1,10 @@
 TI
 ==
+2013-12-15 19:46 MM
+  Finished 8.2 completely, and drew the circuit of 8.1 from Robins sheets.
+  You should be able to design the ringcountertables to match this circuit if 
+  you just use states from 000 to 111 for each number.
+
 2013-12-11 14:46 AT
   Started working on 7.2 and 7.4. No idea how long it will take, but
   I'll definitely submit pdf-version tomorrow until 11:00. Paper-
