@@ -27,8 +27,38 @@ Technische Informatik: Abgabe 8}
 \maketitle
 
 \section*{Exercise 8.1 (JK Flipflop Ringcounter)}
-@Andrey You wanted to try to get to that circuit, right? It should work out if you name the states naturally from 000 to 111.\\
-\includegraphics[width=\textwidth]{images/8_1-ringcounter-jk.png} 
+\subExercise{a} 
+  We want to model a ring-counter that counts forwards if the input $w$ is $0$, 
+  and backwards if $w$ is $1$. 
+  It can be modeled by a Moore-automaton (the output depends only on the state). 
+  The state diagram looks as follows:
+  \begin{figure}[h]
+    \centering\includegraphics[width=0.8\linewidth]{images/ringCounter_diagram.png}
+    \caption{State diagram for the ring-counter. Output is omitted, it's just equal to the node index.}
+  \end{figure}
+
+  Same in table-form:
+
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    State & w = 0 & w = 1 & Output \\
+    \hline
+    000 & 001 & 111 & 000 \\
+    001 & 010 & 000 & 001 \\
+    010 & 011 & 001 & 010 \\
+    011 & 100 & 010 & 011 \\
+    100 & 101 & 011 & 100 \\
+    101 & 110 & 100 & 101 \\
+    110 & 111 & 101 & 110 \\
+    111 & 000 & 110 & 111 \\
+    \hline
+  \end{tabular}
+
+\subExercise{b}
+The corresponding circuit looks as follows:
+\begin{figure}[h]
+  \centering\includegraphics[width=\textwidth]{images/8_1-ringcounter-jk.png} 
+\end{figure}
 
 \FloatBarrier
 \section*{Exercise 8.2 (JK Flipflip for 4 equal inputs)}
@@ -132,6 +162,5 @@ Which brings us to this circuit:
 \FloatBarrier
 \section*{Exercise 8.3 (TODO)}
 
-TODO Andrey?
 \end{document}
 
