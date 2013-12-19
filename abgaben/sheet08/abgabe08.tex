@@ -160,7 +160,46 @@ Which brings us to this circuit:
 \end{figure}
 
 \FloatBarrier
-\section*{Exercise 8.3 (TODO)}
+\section*{Exercise 8.3}
+\subExercise{a}
+We keep partitioning the states until nothing changes: 
 
+\begin{tabular}{|c|c|}
+  \hline
+  Initial partition & (ABCDEFGH) \\
+  Different outputs & (ACEFG)(BDH) \\
+  Second column & (AEG)(C)(F)(B)(D)(H) \\
+  Thirrd column & (AG)(E)(C)(F)(B)(D)(H) \\
+  No changes. & \\
+  \hline
+\end{tabular}
+
+That is, only the states $A$ and $G$ seem to be equivalent.
+The corresponding state diagram looks as follows:
+
+\begin{figure}[hb]
+  \centering\includegraphics[width=0.6\linewidth]{images/minimized_diagram.png}
+\end{figure}
+
+\subExercise{b} We now number all the states by indices from 000 to 110:
+
+\begin{tabular}{|c|c|c|c|c|c|}
+  \hline
+  State & In = 00 & In = 01 & In = 10 & In = 11 & Output \\
+  \hline
+  A = 000 & 000 & 100 & 010 & ddd & 0 \\
+  B = 001 & ddd & 100 & 110 & 001 & 1 \\
+  C = 010 & 000 & ddd & 010 & 101 & 0 \\
+  D = 011 & 000 & 011 & ddd & 001 & 1 \\
+  E = 100 & 000 & 100 & ddd & 001 & 0 \\
+  F = 101 & ddd & 011 & 010 & 101 & 0 \\
+  H = 110 & 000 & ddd & 110 & 001 & 1 \\
+  \hline
+\end{tabular}
+
+Now one could create three K-Maps for 5 variables (state transitions), 
+one K-Map for 3 variables (mapping from 3 registers to the output), 
+select the prime-implicants, and 
+implement the corresponding circuit with D-Flip-Flops. (Todo, incomplete)
 \end{document}
 
