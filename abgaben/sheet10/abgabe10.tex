@@ -28,6 +28,9 @@ Technische Informatik: Abgabe 10}
 
 \section*{Exercise 10.1 (7-Segment display PLA)}
 
+Sorry, but I switched the order to most-significant-bit-first for the inputs.\\
+So in order to be Question-compatible you have to exchange w and z; and x and y here.\\
+
 Truthtable for LED-display\\
 \begin{tabular}{|l||l|l|l|l||l|l|l|l|l|l|l|}\hline
 i  & $w$ & $x$ & $y$ & $z$ &     $a$ & $b$ & $c$ & $d$ & $e$ & $f$ & $g$ \\\hline\hline
@@ -54,11 +57,109 @@ This leads to these K-maps:\\
   \hline
  $a$     & \multicolumn{4}{c|}{$yz$} \\
   $wx$   & 00                 & 01                 & 11                 & 10                 \\ \hline\hline
-  00     & \cellcolor{gray}1  & \cellcolor{gray}0  & \cellcolor{gray}1  & \cellcolor{gray}1  \\ \hline
-  01     &                 0  &                 1  &                 1  &                 0  \\ \hline
-  11     &                 d  &                 d  &                 d  &                 d  \\ \hline
-  10     &                 1  &                 1  &                 d  &                 d  \\ \hline
+  00     & \cellcolor{gray}1  &                 0  & \cellcolor{gray}1  & \cellcolor{gray}1  \\ \hline
+  01     &                 0  & \cellcolor{gray}1  & \cellcolor{gray}1  &                 0  \\ \hline
+  11     & \cellcolor{gray}d  & \cellcolor{gray}d  & \cellcolor{gray}d  & \cellcolor{gray}d  \\ \hline
+  10     & \cellcolor{gray}1  & \cellcolor{gray}1  & \cellcolor{gray}d  & \cellcolor{gray}d  \\ \hline
 \end{tabular}
+\begin{tabular}{|c||c|c|c|c|}
+  \hline
+ $b$     & \multicolumn{4}{c|}{$yz$} \\
+  $wx$   & 00                 & 01                 & 11                 & 10                 \\ \hline\hline
+  00     & \cellcolor{gray}1  & \cellcolor{gray}1  & \cellcolor{gray}1  & \cellcolor{gray}1  \\ \hline
+  01     & \cellcolor{gray}1  &                 0  & \cellcolor{gray}1  &                 0  \\ \hline
+  11     & \cellcolor{gray}d  &                 d  & \cellcolor{gray}d  &                 d  \\ \hline
+  10     & \cellcolor{gray}1  & \cellcolor{gray}1  & \cellcolor{gray}d  & \cellcolor{gray}d  \\ \hline
+\end{tabular}
+\begin{tabular}{|c||c|c|c|c|}
+  \hline
+ $c$     & \multicolumn{4}{c|}{$yz$} \\
+  $wx$   & 00                 & 01                 & 11                 & 10                 \\ \hline\hline
+  00     & \cellcolor{gray}1  & \cellcolor{gray}1  & \cellcolor{gray}1  &                 0  \\ \hline
+  01     & \cellcolor{gray}1  & \cellcolor{gray}1  & \cellcolor{gray}1  & \cellcolor{gray}1  \\ \hline
+  11     & \cellcolor{gray}d  & \cellcolor{gray}d  & \cellcolor{gray}d  & \cellcolor{gray}d  \\ \hline
+  10     & \cellcolor{gray}1  & \cellcolor{gray}1  & \cellcolor{gray}d  &                 d  \\ \hline
+\end{tabular}
+\begin{tabular}{|c||c|c|c|c|}
+  \hline
+ $d$     & \multicolumn{4}{c|}{$yz$} \\
+  $wx$   & 00                 & 01                 & 11                 & 10                 \\ \hline\hline
+  00     & \cellcolor{gray}1  &                 0  & \cellcolor{gray}1  & \cellcolor{gray}1  \\ \hline
+  01     &                 0  & \cellcolor{gray}1  &                 0  & \cellcolor{gray}1  \\ \hline
+  11     &                 d  & \cellcolor{gray}d  &                 d  & \cellcolor{gray}d  \\ \hline
+  10     & \cellcolor{gray}1  &                 0  & \cellcolor{gray}d  & \cellcolor{gray}d  \\ \hline
+\end{tabular}
+\begin{tabular}{|c||c|c|c|c|}
+  \hline
+ $e$     & \multicolumn{4}{c|}{$yz$} \\
+  $wx$   & 00                 & 01                 & 11                 & 10                 \\ \hline\hline
+  00     & \cellcolor{gray}1  &                 0  &                 0  & \cellcolor{gray}1  \\ \hline
+  01     &                 0  &                 0  &                 0  & \cellcolor{gray}1  \\ \hline
+  11     &                 d  &                 d  &                 d  & \cellcolor{gray}d  \\ \hline
+  10     & \cellcolor{gray}1  &                 0  &                 d  & \cellcolor{gray}d  \\ \hline
+\end{tabular}
+\begin{tabular}{|c||c|c|c|c|}
+  \hline
+ $f$     & \multicolumn{4}{c|}{$yz$} \\
+  $wx$   & 00                 & 01                 & 11                 & 10                 \\ \hline\hline
+  00     & \cellcolor{gray}1  &                 0  &                 0  &                 0  \\ \hline
+  01     & \cellcolor{gray}1  & \cellcolor{gray}1  &                 0  & \cellcolor{gray}1  \\ \hline
+  11     & \cellcolor{gray}d  & \cellcolor{gray}d  & \cellcolor{gray}d  & \cellcolor{gray}d  \\ \hline
+  10     & \cellcolor{gray}1  & \cellcolor{gray}1  & \cellcolor{gray}d  & \cellcolor{gray}d  \\ \hline
+\end{tabular}
+\begin{tabular}{|c||c|c|c|c|}
+  \hline
+ $g$     & \multicolumn{4}{c|}{$yz$} \\
+  $wx$   & 00                 & 01                 & 11                 & 10                 \\ \hline\hline
+  00     &                 0  &                 0  & \cellcolor{gray}1  & \cellcolor{gray}1  \\ \hline
+  01     & \cellcolor{gray}1  & \cellcolor{gray}1  &                 0  & \cellcolor{gray}1  \\ \hline
+  11     & \cellcolor{gray}d  & \cellcolor{gray}d  & \cellcolor{gray}d  & \cellcolor{gray}d  \\ \hline
+  10     & \cellcolor{gray}1  & \cellcolor{gray}1  & \cellcolor{gray}d  & \cellcolor{gray}d  \\ \hline
+\end{tabular}
+
+$a=w+xz+\bar x\bar z+yz$\\
+$b=\bar x+\bar y\bar z+yz$\\
+$c=\bar y+z+x$\\
+$d=\bar x\bar z+x\bar yz+y\bar z+\bar xy$\\
+$e=\bar x\bar z+y\bar z$\\
+$f=w+\bar y\bar z+x\bar y+x\bar z$\\
+$g=w+\bar xy+y\bar z+x\bar y$\\
+
+This gives us this PLA:\\
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|c|c|c||c|}
+  \hline
+ input  & $w$ & $xz$ & $\bar x\bar z$ & $yz$ & $\bar y\bar z$ & $\bar x$ & $\bar y$ & $z$ & $x$ & $x\bar yz$ & $y\bar z$ & $\bar xy$ & $x\bar y$ & $x\bar z$ & output \\ \hline\hline
+  $w$   & 2   & 0    &      0         &  0   &      0         &    0     &   0      &  0  &  0  &     0      &     0     &    0      &   0       &    0      &        \\ \hline
+  $x$   & 0   & 2    &      3         &  0   &      0         &    3     &   0      &  0  &  2  &     2      &     0     &    3      &   2       &    2      &        \\ \hline
+  $y$   & 0   & 0    &      0         &  2   &      3         &    0     &   3      &  0  &  0  &     3      &     2     &    2      &   3       &    0      &        \\ \hline
+  $z$   & 0   & 2    &      3         &  2   &      3         &    0     &   0      &  2  &  0  &     2      &     3     &    0      &   0       &    3      &        \\ \hline\hline
+        & 1   & 1    &      1         &  1   &      0         &    0     &   0      &  0  &  0  &     0      &     0     &    0      &   0       &    0      &   a    \\ \hline
+        & 0   & 0    &      0         &  1   &      1         &    1     &   0      &  0  &  0  &     0      &     0     &    0      &   0       &    0      &   b    \\ \hline
+        & 0   & 0    &      0         &  0   &      0         &    0     &   1      &  1  &  1  &     0      &     0     &    0      &   0       &    0      &   c    \\ \hline
+        & 0   & 0    &      1         &  0   &      0         &    0     &   0      &  0  &  0  &     1      &     1     &    1      &   0       &    0      &   d    \\ \hline
+        & 0   & 0    &      1         &  0   &      0         &    0     &   0      &  0  &  0  &     0      &     1     &    0      &   0       &    0      &   e    \\ \hline
+        & 1   & 0    &      0         &  0   &      1         &    0     &   0      &  0  &  0  &     0      &     0     &    0      &   1       &    1      &   f    \\ \hline
+        & 1   & 0    &      0         &  0   &      0         &    0     &   0      &  0  &  0  &     0      &     1     &    1      &   1       &    0      &   g    \\ \hline
+\end{tabular}
+
+We can optimize $x=x\bar z+xz$ so we could substitute the $x$ column above, so we would only need 13 columns. (I am sure there is more, but for the exercise it is \textit{optimized} now.)
+
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|c|c||c|}
+  \hline
+ input  & $w$ & $xz$ & $\bar x\bar z$ & $yz$ & $\bar y\bar z$ & $\bar x$ & $\bar y$ & $z$ & $x\bar yz$ & $y\bar z$ & $\bar xy$ & $x\bar y$ & $x\bar z$ & output \\ \hline\hline
+  $w$   & 2   & 0    &      0         &  0   &      0         &    0     &   0      &  0  &     0      &     0     &    0      &   0       &    0      &        \\ \hline
+  $x$   & 0   & 2    &      3         &  0   &      0         &    3     &   0      &  0  &     2      &     0     &    3      &   2       &    2      &        \\ \hline
+  $y$   & 0   & 0    &      0         &  2   &      3         &    0     &   3      &  0  &     3      &     2     &    2      &   3       &    0      &        \\ \hline
+  $z$   & 0   & 2    &      3         &  2   &      3         &    0     &   0      &  2  &     2      &     3     &    0      &   0       &    3      &        \\ \hline\hline
+        & 1   & 1    &      1         &  1   &      0         &    0     &   0      &  0  &     0      &     0     &    0      &   0       &    0      &   a    \\ \hline
+        & 0   & 0    &      0         &  1   &      1         &    1     &   0      &  0  &     0      &     0     &    0      &   0       &    0      &   b    \\ \hline
+        & 0   & 1    &      0         &  0   &      0         &    0     &   1      &  1  &     0      &     0     &    0      &   0       &    1      &   c    \\ \hline
+        & 0   & 0    &      1         &  0   &      0         &    0     &   0      &  0  &     1      &     1     &    1      &   0       &    0      &   d    \\ \hline
+        & 0   & 0    &      1         &  0   &      0         &    0     &   0      &  0  &     0      &     1     &    0      &   0       &    0      &   e    \\ \hline
+        & 1   & 0    &      0         &  0   &      1         &    0     &   0      &  0  &     0      &     0     &    0      &   1       &    1      &   f    \\ \hline
+        & 1   & 0    &      0         &  0   &      0         &    0     &   0      &  0  &     0      &     1     &    1      &   1       &    0      &   g    \\ \hline
+\end{tabular}
+
 \FloatBarrier
 
 \end{document}
