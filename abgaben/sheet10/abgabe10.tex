@@ -1,0 +1,65 @@
+\documentclass[10pt,a4paper]{scrartcl}
+\PassOptionsToPackage{table}{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{microtype, multicol, marginnote, bera, parskip}
+\usepackage{listings, amsmath, amssymb, graphicx, tikz, epic}
+\usepackage{stmaryrd} %for lightning arrow
+\usepackage{pstricks, pst-node, pst-tree, pdflscape}
+\usepackage[babel=true]{csquotes}
+\usepackage{placeins}
+\usepackage[labelformat=empty]{caption}
+\tolerance=2000
+\setcounter{secnumdepth}{0}
+\usepackage[inner=2cm,outer=2cm,top=1.5cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage{multirow}
+\newcommand{\subExercise}[1]{\vspace{0.5em} \noindent{\bf #1)}}
+\newcommand{\B}{\mathbb{B}}
+\DeclareMathOperator{\op}{op}
+
+\author{Michael Mardaus \and Andrey Tyukin}
+\title{\includegraphics[scale=0.2]{../logo_schriftzug}\\
+Technische Informatik: Abgabe 10}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercise 10.1 (7-Segment display PLA)}
+
+Truthtable for LED-display\\
+\begin{tabular}{|l||l|l|l|l||l|l|l|l|l|l|l|}\hline
+i  & $w$ & $x$ & $y$ & $z$ &     $a$ & $b$ & $c$ & $d$ & $e$ & $f$ & $g$ \\\hline\hline
+0  & 0   & 0   & 0   & 0   &      1  &  1  &  1  &  1  &  1  &  1  &  0  \\\hline
+1  & 0   & 0   & 0   & 1   &      0  &  1  &  1  &  0  &  0  &  0  &  0  \\\hline
+2  & 0   & 0   & 1   & 0   &      1  &  1  &  0  &  1  &  1  &  0  &  1  \\\hline
+3  & 0   & 0   & 1   & 1   &      1  &  1  &  1  &  1  &  0  &  0  &  1  \\\hline
+4  & 0   & 1   & 0   & 0   &      0  &  1  &  1  &  0  &  0  &  1  &  1  \\\hline
+5  & 0   & 1   & 0   & 1   &      1  &  0  &  1  &  1  &  0  &  1  &  1  \\\hline
+6  & 0   & 1   & 1   & 0   &      0  &  0  &  1  &  1  &  1  &  1  &  1  \\\hline
+7  & 0   & 1   & 1   & 1   &      1  &  1  &  1  &  0  &  0  &  0  &  0  \\\hline
+8  & 1   & 0   & 0   & 0   &      1  &  1  &  1  &  1  &  1  &  1  &  1  \\\hline
+9  & 1   & 0   & 0   & 1   &      1  &  1  &  1  &  0  &  0  &  1  &  1  \\\hline
+10 & 1   & 0   & 1   & 0   &      -  &  -  &  -  &  -  &  -  &  -  &  -  \\\hline
+11 & 1   & 0   & 1   & 1   &      -  &  -  &  -  &  -  &  -  &  -  &  -  \\\hline
+12 & 1   & 1   & 0   & 0   &      -  &  -  &  -  &  -  &  -  &  -  &  -  \\\hline
+13 & 1   & 1   & 0   & 1   &      -  &  -  &  -  &  -  &  -  &  -  &  -  \\\hline
+14 & 1   & 1   & 1   & 0   &      -  &  -  &  -  &  -  &  -  &  -  &  -  \\\hline
+15 & 1   & 1   & 1   & 1   &      -  &  -  &  -  &  -  &  -  &  -  &  -  \\\hline
+\end{tabular}
+
+This leads to these K-maps:\\
+\begin{tabular}{|c||c|c|c|c|}
+  \hline
+ $a$     & \multicolumn{4}{c|}{$yz$} \\
+  $wx$   & 00                 & 01                 & 11                 & 10                 \\ \hline\hline
+  00     & \cellcolor{gray}1  & \cellcolor{gray}0  & \cellcolor{gray}1  & \cellcolor{gray}1  \\ \hline
+  01     &                 0  &                 1  &                 1  &                 0  \\ \hline
+  11     &                 d  &                 d  &                 d  &                 d  \\ \hline
+  10     &                 1  &                 1  &                 d  &                 d  \\ \hline
+\end{tabular}
+\FloatBarrier
+
+\end{document}
+

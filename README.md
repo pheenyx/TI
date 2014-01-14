@@ -1,5 +1,8 @@
 TI
 ==
+2013-01-14 21:30 MM
+  Trying No.1. Not sure if I get to do something else maybe 3...
+
 2013-12-15 19:46 MM
   Finished 8.2 completely, and drew the circuit of 8.1 from Robins sheets.
   You should be able to design the ringcountertables to match this circuit if 
