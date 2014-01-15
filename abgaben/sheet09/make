@@ -1,1 +1,1 @@
-pdflatex --halt-on-error abgabe_09.tex && okular abgabe_09.pdf
+pdflatex --halt-on-error abgabe09.tex && okular abgabe09.pdf
