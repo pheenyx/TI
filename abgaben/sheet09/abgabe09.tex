@@ -1,0 +1,109 @@
+\documentclass[10pt,a4paper]{scrartcl}
+\PassOptionsToPackage{table}{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{microtype, multicol, marginnote, bera, parskip}
+\usepackage{listings, amsmath, amssymb, graphicx, tikz, epic}
+\usepackage{stmaryrd} %for lightning arrow
+\usepackage{pstricks, pst-node, pst-tree, pdflscape}
+\usepackage[babel=true]{csquotes}
+\usepackage{placeins}
+\usepackage[labelformat=empty]{caption}
+\tolerance=2000
+\setcounter{secnumdepth}{0}
+\usepackage[inner=2cm,outer=2cm,top=1.5cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage{multirow}
+\newcommand{\subExercise}[1]{\vspace{0.5em} \noindent{\bf #1)}}
+\newcommand{\B}{\mathbb{B}}
+\DeclareMathOperator{\op}{op}
+
+\author{Michael Mardaus \and Andrey Tyukin}
+\title{\includegraphics[scale=0.2]{../logo_schriftzug}\\
+Technische Informatik: Abgabe 9}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercise 9.1 (Adding)}
+
+
+\subExercise{a}
+20+15
+\begin{tabular}{|c|c|c|c|c|}
+  \hline
+dec& $bin$   & $K_2(bin)$  \\\hline
+20 & 010100  & 010100 \\          
+15 & 001111  & 001111 \\
+\hline\hline
+(35) & 100011 & 011101 = -29 \\\hline
+\end{tabular}
+
+\subExercise{b}
+-13+7
+\begin{tabular}{|c|c|c|c|c|}
+  \hline
+dec& $bin$   & $K_2(bin)$  \\\hline
+-13 & 001101 & 110011 \\          
+7 & 000111   & 000111 \\
+\hline\hline
+(-6) & 111010 & 000110 = -6 \\\hline
+\end{tabular}
+
+\subExercise{c}
+11-28
+\begin{tabular}{|c|c|c|c|c|}
+  \hline
+dec& $bin$   & $K_2(bin)$  \\\hline
+11 & 001011 & 001011 \\          
+-28 & 011100 & 100100 \\
+\hline\hline
+(-17) & 101111 & 010001 = -17 \\\hline
+\end{tabular}
+
+\subExercise{d}
+-13+7
+\begin{tabular}{|c|c|c|c|c|}
+  \hline
+dec& $bin$   & $K_2(bin)$  \\\hline
+-19 & 010011 & 101101 \\          
+-22 & 010110 & 101010 \\
+\hline\hline
+(-41) & (1)010111 & 101001 = 25 \\\hline
+\end{tabular}
+\FloatBarrier
+
+\section*{Exercise 9.3 + 9.4 (Number representations)}
+
+\subExercise{a}
+To perform the actual calculation, we transform everything into the binary representation:
+\begin{align*}
+(8.125)_{10} &= (1000.001)_2 \\
+(B3.09)_{16} &= (10110011.00001001)_2 \\
+(27.65)_8 &= (10111.110101)_2
+\end{align*}
+
+Then we just calculate, step by step (everything binary if not stated otherwise):
+\begin{align*}
+1000.001 - 111.011 &= 0.11 \\
+0.11 + 10110011.00001001 &= 10110011.11001001 \\
+10110011.11001001 - 10111.110101 &= 10011011.11110101 = (155.95703125)_{10}
+\end{align*}
+From the last binary representation we see that the representation in required floating point format is
+$+(0.9BF5)_{16}\cdot16^2$. Unfortunately, not all the bits required to represent the number fit into mantissa:
+\begin{align*}
+0 \quad 1001101111 \quad 00010
+\end{align*}
+The resulting error is $(0.00110101)_2 = 3/16 + 1/64 + 1/256 = (0.2070325)_{10}$.
+
+\subExercise{b} (omitted)
+% Again, everything to binary first:
+% \begin{align*}
+% (A3.12)_{16} &= 10100011.0001001 \\
+% (10.7041)_8 &= 1000.111000100001 \\
+% (17.34)_{10} &= 10001.0101011100001... \\
+% \end{align*}
+% Calculating:
+
+\end{document}
