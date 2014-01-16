@@ -1,5 +1,12 @@
 TI
 ==
+2013-01-14 23:55 MM
+  Solved no.1 even if it is not fully optimized, but it should suffice.
+  can't say if i will try no.3, that stuff takes forever and is just 20pts.
+
+2013-01-14 20:30 MM
+  Trying No.1. Not sure if I get to do something else maybe 3...
+
 2013-12-15 19:46 MM
   Finished 8.2 completely, and drew the circuit of 8.1 from Robins sheets.
   You should be able to design the ringcountertables to match this circuit if 
