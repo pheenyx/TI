@@ -1,0 +1,1 @@
+pdflatex --halt-on-error abgabe11.tex

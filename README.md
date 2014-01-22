@@ -1,5 +1,8 @@
 TI
 ==
+2014-01-22 23:45 MM
+  Done with 1,2 (maybe wrong, too easy) and 4.
+
 2014-01-22 22:00 MM
   I will send in Number 1,2 and 4. I have no intelligent idea for adressing a[i] in 3.
 

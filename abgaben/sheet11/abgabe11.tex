@@ -1,0 +1,61 @@
+\documentclass[10pt,a4paper]{scrartcl}
+\PassOptionsToPackage{table}{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{microtype, multicol, marginnote, bera, parskip}
+\usepackage{listings, amsmath, amssymb, graphicx, tikz, epic}
+\usepackage{stmaryrd} %for lightning arrow
+\usepackage{pstricks, pst-node, pst-tree, pdflscape}
+\usepackage[babel=true]{csquotes}
+\usepackage{placeins}
+\usepackage[labelformat=empty]{caption}
+\tolerance=2000
+\setcounter{secnumdepth}{0}
+\usepackage[inner=2cm,outer=2cm,top=1.5cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage{multirow}
+\usepackage{float}
+\newcommand{\subExercise}[1]{\vspace{0.5em} \noindent{\bf #1)}}
+\newcommand{\B}{\mathbb{B}}
+\DeclareMathOperator{\op}{op}
+
+\author{Michael Mardaus \and Andrey Tyukin}
+\title{\includegraphics[scale=0.2]{../logo_schriftzug}\\
+Technische Informatik: Abgabe 11}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercise 11.1 (Johnny Simulator)}
+\subExercise{a}
+Program Listing:\\
+\begin{tabular}{l|l|l}
+Adr & Asm  & Op\\\hline
+000 &  TAKE & 020\\
+001 &  SUB  & 021\\
+002 &  SAVE & 020\\
+003 &  INC  & 022\\
+004 &  TST  & 020\\
+005 &  JMP  & 001\\
+006 &  HLT  & 000\\
+\end{tabular}
+
+Puts $c = \lceil \frac{a}{b} \rceil$ (Adr 20 divided by Adr 21) into Adr 22.\\
+
+\subExercise{b}
+It takes $c$ times my loop (5 commands/cycles) plus 2 (TAKE and HLT) cycles.
+
+\section*{Exercise 11.2 (Johnny Macro)}
+The DBL macro would be a TAKE adr, ADD adr, SAVE adr combo.\\
+The CLR macro would be a NULL adr, TAKE adr combo.
+
+\section*{Excercise 11.4 (Caches)}
+\subExercise{a}
+In a RAM with 32 addresses and a cache with 5 lines address 13 could be in cache line 3 in a direct mapped cache. And in any of the 5 cachelines in a fullassociative cache, depending on the used cache mapping algorithm.\\
+\subExercise{b}
+5 cache lines is an unusual amount for a 32 adress RAM because 32 cannot be distributed evenly.
+Powers of 2 are common cache sizes. But the number of cachelines should at least divide the number of addresses.
+
+\end{document}
+
